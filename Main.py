@@ -3,9 +3,9 @@ import anago
 import os
 
 
-x_train, y_train = load_data_and_labels('Dataset/English/train.txt')
-x_valid, y_valid = load_data_and_labels('Dataset/English/valid.txt')
-x_test, y_test = load_data_and_labels('Dataset/English/test.txt')
+# x_train, y_train = load_data_and_labels('Dataset/English/train.txt')
+# x_valid, y_valid = load_data_and_labels('Dataset/English/valid.txt')
+# x_test, y_test = load_data_and_labels('Dataset/English/test.txt')
 
 # model.save('Model/weights.h5', 'Model/params.json', 'Model/preprocessor.pickle')
 model = anago.Sequence()
