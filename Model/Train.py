@@ -3,7 +3,7 @@ import anago
 import os
 
 
-class NERDevelop:
+class NER:
 
     def __init__(self):
         self.ROOT_DIR = os.getcwd()
@@ -18,13 +18,20 @@ class NERDevelop:
         self.x_test, self.y_test = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/test.txt')
 
     def save_model(self):
-        self.model.save('weights.h5', 'params.json', 'preprocessor.pickle')
+        self.model.save(self.ROOT_DIR + '/Model/model/weights.h5',
+                        self.ROOT_DIR + '/Model/model/params.json',
+                        self.ROOT_DIR + '/Model/model/preprocessor.pickle')
 
     def load_model(self):
-        self.model.load('weights.h5', 'params.json', 'preprocessor.pickle')
+        self.model = self.model.load(self.ROOT_DIR + '/Model/model/weights.h5',
+                                     self.ROOT_DIR + '/Model/model/params.json',
+                                     self.ROOT_DIR + '/Model/model/preprocessor.pickle')
 
     def fit(self):
         self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=15)
 
     def test_model(self):
         self.model.score(self.x_test, self.y_test)
+
+    def predict(self, s):
+        return self.model.analyze(s)
