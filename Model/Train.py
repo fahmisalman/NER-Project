@@ -3,7 +3,7 @@ import anago
 import os
 
 
-class Train:
+class NERDevelop:
 
     def __init__(self):
         self.ROOT_DIR = os.getcwd()
@@ -17,11 +17,14 @@ class Train:
         self.x_valid, self.y_valid = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/valid.txt')
         self.x_test, self.y_test = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/test.txt')
 
-    def save_data(self):
-        pass
+    def save_model(self):
+        self.model.save('weights.h5', 'params.json', 'preprocessor.pickle')
+
+    def load_model(self):
+        self.model.load('weights.h5', 'params.json', 'preprocessor.pickle')
 
     def fit(self):
-
-        self.load_data()
         self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=15)
 
+    def test_model(self):
+        self.model.score(self.x_test, self.y_test)

@@ -17,3 +17,6 @@ print(model.analyze(words))
 
 # model.fit(x_train, y_train, x_valid, y_valid)
 # model.score(x_test, y_test)
+
+
+from Model import Training
