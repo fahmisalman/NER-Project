@@ -10,7 +10,9 @@ class NER:
         self.x_train = self.y_train = []
         self.x_valid = self.y_valid = []
         self.x_test = self.y_test = []
-        self.model = anago.Sequence()
+        self.model = None
+        self.weight = ''
+        self.p = ''
 
     def load_data(self):
         self.x_train, self.y_train = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/train.txt')
@@ -23,11 +25,14 @@ class NER:
                         self.ROOT_DIR + '/Model/model/preprocessor.pickle')
 
     def load_model(self):
-        self.model = self.model.load(self.ROOT_DIR + '/Model/model/weights.h5',
-                                     self.ROOT_DIR + '/Model/model/params.json',
-                                     self.ROOT_DIR + '/Model/model/preprocessor.pickle')
+        self.model = anago.Sequence.load(self.ROOT_DIR + '/Model/model/weights.h5',
+                                         self.ROOT_DIR + '/Model/model/params.json',
+                                         self.ROOT_DIR + '/Model/model/preprocessor.pickle')
+        self.weight = self.model.model
+        self.p = self.model.p
 
     def fit(self):
+        self.model = anago.Sequence()
         self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=15)
 
     def test_model(self):
