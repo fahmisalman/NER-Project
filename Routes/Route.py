@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request
 from Model import NER
 import tensorflow as tf
 
+app = Flask(__name__)
+
 
 def model_check():
     if ner.p == '':
@@ -29,7 +31,6 @@ def summary():
 def main(host='0.0.0.0', port=8081):
     global ner, app
     ner = NER()
-    app = Flask(__name__)
     app.run(host=host,
             debug=True,
             port=port)
