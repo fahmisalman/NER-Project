@@ -15,9 +15,9 @@ class NER:
         self.p = ''
 
     def load_data(self):
-        self.x_train, self.y_train = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/train.txt')
-        self.x_valid, self.y_valid = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/valid.txt')
-        self.x_test, self.y_test = load_data_and_labels(self.ROOT_DIR + '/Dataset/English/test.txt')
+        self.x_train, self.y_train = load_data_and_labels(self.ROOT_DIR + '/Dataset/Indo/data.txt')
+        self.x_valid, self.y_valid = load_data_and_labels(self.ROOT_DIR + '/Dataset/Indo/data.txt')
+        self.x_test, self.y_test = load_data_and_labels(self.ROOT_DIR + '/Dataset/Indo/test.txt')
 
     def save_model(self):
         self.model.save(self.ROOT_DIR + '/Model/model/weights.h5',
@@ -33,7 +33,7 @@ class NER:
 
     def fit(self):
         self.model = anago.Sequence()
-        self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=15)
+        self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=10)
 
     def test_model(self):
         self.model.score(self.x_test, self.y_test)
