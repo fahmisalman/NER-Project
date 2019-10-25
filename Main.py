@@ -1,12 +1,12 @@
 from Routes.Route import main
-from Model.Train import NER
+# from Model.Train import NER
 
 
 if __name__ == '__main__':
-    # main()
-    model = NER()
-    model.load_data()
-    model.fit()
+    main()
+    # model = NER()
+    # model.load_data()
+    # model.fit()
     # model.save_model()
     # a = open('Dataset/Indo/train.txt')
     # a = a.readlines()

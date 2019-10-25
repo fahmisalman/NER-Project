@@ -33,7 +33,7 @@ class NER:
 
     def fit(self):
         self.model = anago.Sequence()
-        self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=10)
+        self.model.fit(self.x_train, self.y_train, self.x_valid, self.y_valid, epochs=5)
 
     def test_model(self):
         self.model.score(self.x_test, self.y_test)
